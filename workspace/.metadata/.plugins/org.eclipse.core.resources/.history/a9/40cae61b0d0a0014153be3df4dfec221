@@ -1,0 +1,13 @@
+package com.example.wifiapp.Tools.Expandable;
+import com.example.wifiapp.*;
+
+public interface IGroupExpandable {
+ 
+	void addElement(View v, IExpandable element);
+	boolean removeElement(View v);
+	
+	void openAllElement();
+	void closeAllElement();
+	
+	void setOpenOnlyLast();
+}

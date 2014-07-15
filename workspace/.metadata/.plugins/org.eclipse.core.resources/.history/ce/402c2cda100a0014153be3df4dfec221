@@ -1,0 +1,43 @@
+package com.example.wifiapp.Tools.Expandable;
+
+import android.view.View;
+
+public class CollapsableView implements ICollapsable {
+
+	private View v;
+	
+	/* Possible values of visibility are :
+	 * View.GONE
+	 * View.VISIBLE
+	 * View.INVISIBLE */
+	
+	public CollapsableView(View v){
+		this.v = v;
+	}
+	
+	@Override
+	public void expand() {
+		v.setVisibility(View.VISIBLE);
+	}
+
+	@Override
+	public void collapse() {
+		v.setVisibility(View.GONE);
+	}
+
+	@Override
+	public void toggle() {
+		v.setVisibility(isCollapsed() ? View.VISIBLE : View.GONE);
+	}
+
+	@Override
+	public boolean isExpanded() {
+		return v.getVisibility() == View.VISIBLE;
+	}
+
+	@Override
+	public boolean isCollapsed() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+}

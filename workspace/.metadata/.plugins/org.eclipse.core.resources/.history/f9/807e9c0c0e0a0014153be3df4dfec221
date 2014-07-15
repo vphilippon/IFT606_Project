@@ -1,0 +1,6 @@
+package com.example.wifiapp.Tools.Expandable;
+
+public interface IExpandable {
+	void expand();
+	void collapse();
+}

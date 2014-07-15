@@ -1,0 +1,31 @@
+package com.example.wifiapp.Tools.Expandable;
+
+import android.opengl.Visibility;
+import android.view.View;
+
+public class CollapsableView implements IExpandable {
+
+	private View v;
+	
+	public CollapsableView(View v){
+		this.v = v;
+	}
+	
+	@Override
+	public void expand() {
+		v.setVisibility(View.GONE);
+	}
+
+	@Override
+	public void collapse() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void toggle() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

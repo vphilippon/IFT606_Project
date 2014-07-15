@@ -1,0 +1,17 @@
+package com.example.wifiapp.Tools.Expandable;
+import android.view.View;
+
+public interface IGroupCollapsable {
+ 
+	void addElement(View v, ICollapsable element);
+	boolean removeElement(View v);
+	
+	void openAllElement();
+	void closeAllElement();
+	void deleteAllElements();
+	
+	void setOpenOnlyLast();
+	
+	int getElementCount();
+	int getOpenedElementCount();
+}

@@ -1,0 +1,6 @@
+package Expandable;
+
+public interface IExpandable {
+	void expand();
+	void collapse();
+}

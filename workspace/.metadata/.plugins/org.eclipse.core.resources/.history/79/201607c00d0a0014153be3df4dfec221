@@ -1,0 +1,44 @@
+package com.example.wifiapp.Tools.Expandable;
+
+import java.util.Map;
+
+import android.view.View;
+import com.example.wifiapp.*;
+
+public class GroupExpandable implements IGroupExpandable {
+	
+	private Map<View, IExpandable> elements;
+	
+	
+	
+	@Override
+	public void addElement(View v, IExpandable element) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public boolean removeElement(View v) {
+		return elements.remove(v) != null;
+	}
+
+	@Override
+	public void openAllElement() {
+		for(IExpandable e : elements.values()){
+			e.expand();
+		}		
+	}
+
+	@Override
+	public void closeAllElement() {
+		for(IExpandable e : elements.values()){
+			e.collapse();
+		}				
+	}
+
+	@Override
+	public void setOpenOnlyLast() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

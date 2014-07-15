@@ -1,0 +1,6 @@
+package Expandable;
+
+public interface IExpandable {
+	void show();
+	void hide();
+}

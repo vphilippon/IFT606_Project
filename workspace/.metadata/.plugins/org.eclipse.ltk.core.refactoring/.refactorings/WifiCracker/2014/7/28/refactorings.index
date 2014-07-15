@@ -1,0 +1,5 @@
+1404736282924	Rename type 'StartScanAction'
+1404736718674	Rename type 'StartScanState'
+1404758230385	Rename field 'receiverWifi'
+1404758245349	Rename type 'WifiReceiver'
+1404759312078	Rename method 'handleAction'

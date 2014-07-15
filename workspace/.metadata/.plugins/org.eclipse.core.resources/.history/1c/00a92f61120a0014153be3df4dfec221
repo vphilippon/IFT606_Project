@@ -1,0 +1,21 @@
+package com.example.wifiapp.Tools.Expandable;
+
+public class SlideAnimation {
+	
+
+	public static void slide_down(Context ctx, View v){
+		10.
+		Animation a = AnimationUtils.loadAnimation(ctx, R.anim.slide_down);
+		11.
+		if(a != null){
+		12.
+		a.reset();
+		13.
+		if(v != null){
+		14.
+		v.clearAnimation();
+		15.
+		v.startAnimation(a);
+		16.
+		}
+}

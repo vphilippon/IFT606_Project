@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:orientation="vertical"
+    android:>
+    
+    <TextView
+        android:id="@+id/scan_entry_ssid"
+        android:layout_width="wrap_content"
+        android:clickable="false"
+        android:layout_height="wrap_content" />
+
+    <Button 
+        android:id="@+id/scan_result_show_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/scan_result_show_more"
+        android:textAlignment="textEnd"/>
+    
+    <!-- Invisible elements to store information -->
+    <TextView
+        android:id="@+id/scan_entry_bssid"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:visibility="gone" />
+    <TextView
+        android:id="@+id/scan_entry_frequency"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:visibility="gone" />
+    <TextView
+        android:id="@+id/scan_entry_level"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:visibility="gone" />
+
+</TableRow>

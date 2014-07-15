@@ -1,0 +1,64 @@
+package com.example.wifiapp.Tools.Expandable;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import android.view.View;
+
+public class GroupCollapsable implements IGroupCollapsable {
+	
+	private Map<View, ICollapsable> elements;
+	
+	public GroupCollapsable(){
+		elements = new HashMap<View, ICollapsable>();
+	}
+	
+	@Override
+	public void addElement(View v, ICollapsable element) {
+		elements.put(v,  element);
+	}
+
+	@Override
+	public boolean removeElement(View v) {
+		return elements.remove(v) != null;
+	}
+
+	@Override
+	public void openAllElement() {
+		for(ICollapsable e : elements.values()){
+			e.expand();
+		}		
+	}
+
+	@Override
+	public void closeAllElement() {
+		for(ICollapsable e : elements.values()){
+			e.collapse();
+		}				
+	}
+
+	@Override
+	public void setOpenOnlyLast() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int getElementCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getOpenedElementCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void deleteAllElements() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

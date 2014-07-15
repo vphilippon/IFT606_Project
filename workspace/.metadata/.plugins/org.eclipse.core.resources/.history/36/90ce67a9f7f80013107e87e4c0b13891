@@ -1,0 +1,231 @@
+package com.example.test;
+
+import java.util.List;
+
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBar;
+import android.support.v4.app.Fragment;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.ReceiverCallNotAllowedException;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.wifi.ScanResult;
+import android.net.wifi.WifiConfiguration;
+import android.net.wifi.WifiManager;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.os.Build;
+
+public class MainActivity extends ActionBarActivity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+
+		if (savedInstanceState == null) {
+			getSupportFragmentManager().beginTransaction()
+					.add(R.id.container, new PlaceholderFragment()).commit();
+		}
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
+		if (id == R.id.action_settings) {
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+	/**
+	 * A placeholder fragment containing a simple view.
+	 */
+	public static class PlaceholderFragment extends Fragment {
+
+		public PlaceholderFragment() {
+		}
+
+		@Override
+		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+				Bundle savedInstanceState) {
+			View rootView = inflater.inflate(R.layout.fragment_main, container,
+					false);
+			return rootView;
+		}
+	}
+
+	private final BroadcastReceiver mWifiScanReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context c, Intent intent) {
+			Log.d("Event", "IN EVENT");
+			Log.d("Event", intent.getAction().toString());
+			if (intent.getAction() == WifiManager.SCAN_RESULTS_AVAILABLE_ACTION) {
+				List<ScanResult> mScanResults = mWifiManager.getScanResults();
+				for (ScanResult s : mScanResults) {
+					Log.d("RES", s.toString());
+				}
+			}
+			
+			
+		}
+	};
+
+	WifiManager mWifiManager = null;
+
+	public void onBtnClicked(View v) {
+		Button sender = (Button) v;
+		sender.setText("TOTO");
+		Log.d("MAIN", "Start Wifi Scan");
+
+		mWifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+		List<WifiConfiguration> a = mWifiManager.getConfiguredNetworks();
+		if (a != null) {
+			for (WifiConfiguration wc : a) {
+				Log.d("BEGIN", wc.toString());
+			}
+		} else {
+			Log.d("BEGIN", "mWifiManager.getConfiguredNetworks() = null");
+		}
+
+		registerReceiver(mWifiScanReceiver, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
+		
+		mWifiManager.setWifiEnabled(true);
+		mWi
+		mWifiManager.startScan();
+	}
+
+	/*
+	 * // Seems to works ... but not sure of what it does private boolean
+	 * haveNetworkConnection() { boolean haveConnectedWifi = false; boolean
+	 * haveConnectedMobile = false;
+	 * 
+	 * ConnectivityManager cm = (ConnectivityManager)
+	 * getSystemService(Context.CONNECTIVITY_SERVICE); NetworkInfo[] netInfo =
+	 * cm.getAllNetworkInfo(); for (NetworkInfo ni : netInfo) {
+	 * 
+	 * Log.d("WIFI-INFO-NAME", ni.getDetailedState().name());
+	 * Log.d("WIFI-INFO-SUBTYPE", ni.getSubtypeName()); Log.d("WIFI-INFO",
+	 * ni.toString());
+	 * 
+	 * if (ni.getTypeName().equalsIgnoreCase("WIFI")) if (ni.isConnected())
+	 * haveConnectedWifi = true; if
+	 * (ni.getTypeName().equalsIgnoreCase("MOBILE")) if (ni.isConnected())
+	 * haveConnectedMobile = true; } return haveConnectedWifi ||
+	 * haveConnectedMobile; }
+	 * 
+	 * // Does not seems to work ... private void checkWifi() { IntentFilter
+	 * filter = new IntentFilter();
+	 * filter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION); final
+	 * WifiManager wifiManager = (WifiManager)
+	 * getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+	 * 
+	 * BroadcastReceiver b = new BroadcastReceiver() {
+	 * 
+	 * @Override public void onReceive(Context arg0, Intent arg1) {
+	 * 
+	 * 
+	 * Log.d("wifi", "Open Wifimanager");
+	 * 
+	 * String scanList = wifiManager.getScanResults().toString(); Log.d("wifi",
+	 * "Scan:" + scanList); } };
+	 * 
+	 * registerReceiver(b, filter); wifiManager.startScan(); }
+	 */
+}
+
+/*package com.example.test;
+
+import java.util.List;
+
+import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.wifi.ScanResult;
+import android.net.wifi.WifiManager;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
+public class MainActivity extends Activity {
+    TextView mainText;
+    WifiManager mainWifi;
+    WifiReceiver receiverWifi;
+    List<ScanResult> wifiList;
+    StringBuilder sb = new StringBuilder();
+    
+    public void onCreate(Bundle savedInstanceState) {
+       super.onCreate(savedInstanceState);
+       setContentView(R.layout.activity_main);
+    }
+    
+    public void onClick(View v)
+    {
+    	mainText = (TextView) findViewById(R.id.mainText);
+        Log.d("NULLPTR?", mainText == null ? "null" : mainText.toString());
+        mainWifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+        receiverWifi = new WifiReceiver();
+        registerReceiver(receiverWifi, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
+        mainWifi.startScan();
+        mainText.setText("\\nStarting Scan...\\n");
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add(0, 0, 0, "Refresh");
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+        mainWifi.startScan();
+        mainText.setText("Starting Scan");
+        return super.onMenuItemSelected(featureId, item);
+    }
+
+    protected void onPause() {
+        unregisterReceiver(receiverWifi);
+        super.onPause();
+    }
+
+    protected void onResume() {
+        registerReceiver(receiverWifi, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
+        super.onResume();
+    }
+    
+    class WifiReceiver extends BroadcastReceiver {
+        public void onReceive(Context c, Intent intent) {
+            sb = new StringBuilder();
+            wifiList = mainWifi.getScanResults();
+            for(int i = 0; i < wifiList.size(); i++){
+                sb.append(new Integer(i+1).toString() + ".");
+                sb.append((wifiList.get(i)).toString());
+                sb.append("\\n");
+            }
+            mainText.setText(sb);
+        }
+    }
+}*/

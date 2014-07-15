@@ -1,0 +1,6 @@
+package Expandable;
+
+public interface IExpandable extends View {
+	void show();
+	void hide();
+}

@@ -1,0 +1,21 @@
+1405214188459	Rename resource 'animator'
+1405214908524	Delete element
+1405300028897	Delete element
+1405300080335	Delete elements
+1405300234781	Rename field 'SHOW_MORE_SSID_KEY'
+1405300248931	Rename field 'SHOW_MORE_BSSID_KEY'
+1405300255809	Rename field 'SHOW_MORE_LEVEL_KEY'
+1405300260804	Rename field 'SHOW_MORE_FREQ_KEY'
+1405305662189	Delete element
+1405307945769	Rename package 'ConnectedClient'
+1405308022877	Rename field 'Device'
+1405308035041	Rename field 'HWAddr'
+1405308040955	Rename field 'IpAddr'
+1405308047028	Rename field 'hardwareAddr'
+1405308060525	Rename method 'getHWAddr'
+1405308380127	Rename field 'mWifiManager'
+1405311809502	Rename method 'updateClientList'
+1405311820487	Rename method 'modifyClientList'
+1405311898609	Rename field 'clientsTableScrollView'
+1405312448048	Delete element
+1405312833123	Rename local variable 'clientConntectedEntry'
